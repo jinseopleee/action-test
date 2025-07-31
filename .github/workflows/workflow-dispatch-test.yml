@@ -4,10 +4,10 @@ run-name: Deploy Applications - ${{ inputs.environment }} by @${{ github.actor }
 on:
   workflow_dispatch:
     inputs:
-      qa-checker-trigging:
-        description: Triggering QA Checker
+      use-qa-checker:
+        description: "Use QA Checker"
         required: true
-        default: false
+        default: "true"
         type: boolean
 
 
