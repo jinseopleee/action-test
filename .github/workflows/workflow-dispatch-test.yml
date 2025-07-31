@@ -1,0 +1,24 @@
+name: Deploy Applications
+run-name: Deploy Applications - ${{ inputs.environment }} by @${{ github.actor }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      qa-checker-trigging:
+        description: Trigger QA Checker
+        required: true
+        default: false
+        type: boolean
+
+
+jobs:
+  print-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello
+        run: echo "Hello, World!"
+
+
+
+
+
