@@ -9,12 +9,20 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/mads-design-token-generator  # 위 composite 액션 경로
+      - uses: ./.github/actions/mads-design-token-generator
         with:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore: update design token"
+          title: "chore: update design token"
+          body: "chore: update design token"
+          branch: update-tokens-${{ github.run_id }}
+          base: main
