@@ -29,6 +29,7 @@ runs:
         version: 9
 
     - name: Install dependencies
+      shell: bash
       run: |
         pnpm i --frozen-lockfile
         pnpm build
