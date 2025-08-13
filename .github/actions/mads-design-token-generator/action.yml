@@ -8,33 +8,31 @@ inputs:
     required: true
 
 runs:
-  using: "node20"
-  main: dist/index.js
-  # using: composite
-  # steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v4
-  #     with:
-  #       fetch-depth: 0
+  # using: "node20"
+  # main: dist/index.js
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: pnpm
+    
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
 
-  #   - name: Setup Node
-  #     uses: actions/setup-node@v4
-  #     with:
-  #       node-version: 20
-
-  #   - name: Generate design token from figma
-  #     shell: bash
-  #     env:
-  #       INPUT_FIGMA_ACCESS_TOKEN: ${{ inputs.FIGMA_ACCESS_TOKEN }}
-  #     run: node ./.github/actions/mads-design-token-generator/dist/index.js
-
-  #   - name: Create Pull Request
-  #     id: create-pull-request
-  #     uses: peter-evans/create-pull-request@v7
-  #     with:
-  #       token: ${{ inputs.GITHUB_TOKEN }}
-  #       branch: update-mads-foundation-token
-  #       base: main
-  #       title: Update MADS foundation token
-  #       body: Update MADS foundation token
-  #       commit-message: "chore: update MADS foundation token"
+    - name: Install dependencies
+      run: |
+        pnpm i --frozen-lockfile
+        pnpm build
+    
+    - name: Generate design token from figma
+      shell: bash
+      run: node dist/index.js
