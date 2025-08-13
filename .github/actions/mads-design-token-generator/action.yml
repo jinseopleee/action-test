@@ -45,5 +45,5 @@ runs:
       shell: bash
       env:
         INPUT_FIGMA_ACCESS_TOKEN: ${{ inputs.FIGMA_ACCESS_TOKEN }}
-      run: node dist/index.js
+      run: node .github/actions/mads-design-token-generator/dist/index.js
 
