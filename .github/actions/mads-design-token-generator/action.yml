@@ -39,7 +39,7 @@ runs:
       shell: bash
       run: |
         pnpm i --frozen-lockfile
-        pnpm build
+        pnpm build --filter=@musinsa/mads-design-token-generator-action
     
     - name: Generate design token from figma
       shell: bash
