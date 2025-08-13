@@ -1,0 +1,15 @@
+name: Generate & PR
+on: { workflow_dispatch: {} }
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/mads-design-token-generator  # 위 composite 액션 경로
+        with:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

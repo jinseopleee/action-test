@@ -1,0 +1,43 @@
+name: MADS Design Token Generator
+description: MADS Design Token Generator
+
+inputs:
+  FIGMA_ACCESS_TOKEN:
+    required: true
+  GITHUB_TOKEN:
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Generate design token from figma
+      shell: bash
+      env:
+        INPUT_FIGMA_ACCESS_TOKEN: ${{ inputs.FIGMA_ACCESS_TOKEN }}
+      run: node dist/index.js
+
+    - name: Create Pull Request
+      id: create-pull-request
+      uses: peter-evans/create-pull-request@v7
+      with:
+        token: ${{ inputs.GITHUB_TOKEN }}
+        branch: update-mads-foundation-token
+        base: main
+        title: Update MADS foundation token
+        body: Update MADS foundation token
+        commit-message: "chore: update MADS foundation token"
+    
+    - name: Log PR URL
+      if: ${{ steps.create-pull-request.outputs['pull-request-url'] }}
+      shell: bash
+      run: echo "PR URL: ${{ steps.create-pull-request.outputs['pull-request-url'] }}" 
