@@ -36,3 +36,6 @@ runs:
     - name: Generate design token from figma
       shell: bash
       run: node dist/index.js
+      env:
+        INPUT_FIGMA_ACCESS_TOKEN: ${{ inputs.FIGMA_ACCESS_TOKEN }}
+
