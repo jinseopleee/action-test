@@ -8,42 +8,5 @@ inputs:
     required: true
 
 runs:
-  # using: "node20"
-  # main: dist/index.js
-  using: composite
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    
-    # - name: Setup Node
-    #   uses: actions/setup-node@v4
-    #   with:
-    #     node-version: 20
-    #     cache: pnpm
-    
-    # - name: Setup pnpm
-    #   uses: pnpm/action-setup@v4
-    #   uses: actions/setup-node@v4
-    #   with:
-    #     node-version-file: '.nvmrc'
-    #     cache: 'pnpm'
-    - uses: pnpm/action-setup@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version-file: '.nvmrc'
-        cache: 'pnpm'
-
-    - name: Install dependencies
-      shell: bash
-      run: |
-        pnpm i --frozen-lockfile
-        pnpm build --filter=@musinsa/mads-design-token-generator-action
-    
-    - name: Generate design token from figma
-      shell: bash
-      env:
-        INPUT_FIGMA_ACCESS_TOKEN: ${{ inputs.FIGMA_ACCESS_TOKEN }}
-      run: node .github/actions/mads-design-token-generator/dist/index.js
-
+  using: "node20"
+  main: dist/index.js

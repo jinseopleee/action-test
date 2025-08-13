@@ -13,6 +13,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        shell: bash
+        run: |
+          pnpm i --frozen-lockfile
+          pnpm build --filter=@musinsa/mads-design-token-generator-action
+
       - uses: ./.github/actions/mads-design-token-generator
         with:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
