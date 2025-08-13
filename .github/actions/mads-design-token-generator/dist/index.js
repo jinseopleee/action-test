@@ -27772,7 +27772,7 @@ const findClosetFile = (start, fileName) => {
   });
   lines.push("}");
   const themeCss = lines.join("\n");
-  const root = findClosetFile(__dirname, "pnpm-workspace.yaml");
+  const root = findClosetFile(process.cwd(), "pnpm-workspace.yaml");
   const themeDir = `${root}/packages/mads/src/foundation/theme.css`;
   fs.writeFileSync(themeDir, themeCss);
   console.log(`🚀 토큰이 ${themeDir}에 생성되었습니다.`);
