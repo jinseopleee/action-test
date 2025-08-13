@@ -36,8 +36,3 @@ runs:
         title: Update MADS foundation token
         body: Update MADS foundation token
         commit-message: "chore: update MADS foundation token"
-    
-    - name: Log PR URL
-      if: ${{ steps.create-pull-request.outputs['pull-request-url'] }}
-      shell: bash
-      run: echo "PR URL: ${{ steps.create-pull-request.outputs['pull-request-url'] }}" 
