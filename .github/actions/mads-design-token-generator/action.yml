@@ -4,8 +4,6 @@ description: MADS Design Token Generator
 inputs:
   FIGMA_ACCESS_TOKEN:
     required: true
-  GITHUB_TOKEN:
-    required: true
 
 runs:
   using: "node20"

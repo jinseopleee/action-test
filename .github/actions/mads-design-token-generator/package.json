@@ -10,6 +10,7 @@
     "tsc": "tsc"
   },
   "devDependencies": {
+    "@musinsa/packages-get-monorepo-root-dir": "workspace:*",
     "@actions/core": "^1.11.1",
     "@figma/rest-api-spec": "^0.33.0",
     "@types/node": "^20.19.9",

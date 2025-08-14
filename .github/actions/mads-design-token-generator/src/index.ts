@@ -7,7 +7,11 @@ import { toKebab } from './toKebab';
 import type { CssVar } from './types';
 import { hasFills } from './hasFills';
 import { isTextDocument } from './isTextDocument';
-import { findClosetFile } from './findClosetFile';
+import { getMonorepoRootPath } from '@musinsa/packages-get-monorepo-root-dir';
+
+// lAbzqUQAovN15n5n6g6Zxl
+
+// packages/mads/src/foundation
 
 (async () => {
   const FIGMA_ACCESS_TOKEN = core.getInput('FIGMA_ACCESS_TOKEN', { required: true });
@@ -155,7 +159,7 @@ import { findClosetFile } from './findClosetFile';
 
   const themeCss = lines.join('\n');
 
-  const root = findClosetFile(process.cwd(), 'pnpm-workspace.yaml');
+  const root = getMonorepoRootPath();
   const themeDir = `${root}/theme.css`;
   fs.writeFileSync(themeDir, themeCss);
 
