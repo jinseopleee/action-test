@@ -14,5 +14,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/get-monorepo-root-dir/README.md
+          publish_dir: ./packages/get-monorepo-root-dir
           destination_dir: ./get-monorepo-root-dir
