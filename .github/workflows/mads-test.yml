@@ -19,13 +19,7 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
       
-      - name: Install dependencies
-        shell: bash
-        run: |
-          pnpm i --frozen-lockfile
-          pnpm build --filter=@musinsa/mads-design-token-generator-action
-
-      - uses: ./.github/actions/mads-design-token-generator
+      - uses: jinseoplee/action-test/actions/mads-design-token-generator-action
         with:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
